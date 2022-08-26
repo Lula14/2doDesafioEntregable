@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PETSHOP ONLINE</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/class.cotizador.js"></script>
+    <script defer src="js/variables.js"></script>
+    <script defer src="js/appss.js"></script>
+</head>
+
+<body class="body">
+    
+    <h1 class="center separador">PETSHOP TIJUANA</h1>
+    <div class="div-cotizador">
+        <h2 class="center separador">Completa los datos solicitados</h2>
+        <label for="productos">Selecciona el tipo de producto</label>
+        <select id="productos">
+            <option selected disabled>...</option>
+            <option value="">Cat chow</option>
+        </select>
+        <label for="kilos">Selecciona sus kilos</label>
+        <select id="kilos">
+            <option selected disabled>...</option>
+            <option value="">KG</option>
+        </select>
+        <label for="cantidad">Ingresa la cantidad</label>
+        <input type="number" id="cantidad" value="1" min="1" max="15">
+        <div class="center separador">
+            <button id="botonCalcular" class="button button-outline">Calcular</button>
+        </div>
+        <div class="center separador">
+            <p class="total">Precio estimado: $ <span>0.00</span><span class="guardar ocultar"
+                    title="Enviar por Email">📧</span></p>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
