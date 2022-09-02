@@ -1,11 +1,11 @@
- const cargarCombo = (select, array)=> { 
-    if (array.length > 0) {
-        array.forEach(elemento => {
+ const cargarCombo = (select, datosProductos)=> { 
+    if (datosProductos.length > 0) {
+        datosProductos.forEach(elemento => {
             select.innerHTML += `<option value="${elemento.factor}">${elemento.tipo}</option>`
         });
     } else {
         console.error("No existen elementos en el Array :(")
-        btnCalcular.disabled = true
+        botonCalcular.disabled = false
     }
 }
 
@@ -24,31 +24,34 @@ const datosCompletos = ()=> {
 const realizarCotizacion = ()=> { 
 
     if (datosCompletos()) {
-        const total = new Cotizador(cantidad.value, productos.value, kilos.value, CostoKilo)
+        const total = new Cotizador(cantidad.value, productos.value, kilos.value, costoKilo)
         console.log(total.calcular())
-        total.innerText = total.calcular()
+        importe.innerText = total.calcular()
         btnEnviar.classList.remove("ocultar")
         
-    } else {
-        alert("⛔️ Completa todos los valores solicitados.")
+    }  else { 
+        swal("faltan datos");
+        console.log("⛔️ No se completaron todos los valores solicitados.")
     }
 }
 
-const enviarPorEmail = ()=> { 
-    const cotizacion = {
-        fechaCotizacion: new Date().toLocaleString(),
-        productos: productos[productos.selectedIndex].text,
-        kilos: kilos[kilos.selectedIndex].text,
-        CostoKilo: datosKilos.value,
-        poliza: total.innerText
-        
-    }
-    localStorage.setItem("UltimaCotizacion", JSON.stringify(cotizacion))
-    alert("✅ Cotización enviada. ¡Muchas gracias por elegirnos!")
-    btnEnviar.classList.add("ocultar")
-}
 
-btnCalcular.addEventListener("click", realizarCotizacion)
-btnEnviar.addEventListener("click", enviarPorEmail) 
+botonCalcular.addEventListener("click", realizarCotizacion)
+
 
 realizarCotizacion()
+
+Toastify({
+    text: "Bienvenido a Tijuana !! Por favor completa los campos solicitados",
+    duration: 6000,
+    destination:false,
+    newWindow: true,
+    close: true,
+    gravity: "top", 
+    position: "center", 
+    stopOnFocus: true, 
+    style: {
+      background: "linear-gradient(to right, #00b09b, #96c93d)",
+    },
+    onClick: function(){} 
+  }).showToast();
