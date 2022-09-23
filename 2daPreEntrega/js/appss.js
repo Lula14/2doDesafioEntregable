@@ -1,4 +1,6 @@
- const cargarCombo = (select, datosProductos)=> { 
+
+
+const cargarCombo = (select, datosProductos) => {
     if (datosProductos.length > 0) {
         datosProductos.forEach(elemento => {
             select.innerHTML += `<option value="${elemento.factor}">${elemento.tipo}</option>`
@@ -12,26 +14,25 @@
 cargarCombo(productos, datosProductos)
 cargarCombo(kilos, datosKilos)
 
-const datosCompletos = ()=> { 
+const datosCompletos = () => {
     if (productos.value !== "..." && kilos.value !== "..." && parseInt(cantidad.value) && cantidad.value >= 0) {
         return true
     } else {
-        return false 
+        return false
     }
 }
 
 
-const realizarCotizacion = ()=> { 
+const realizarCotizacion = () => {
 
     if (datosCompletos()) {
         const total = new Cotizador(cantidad.value, productos.value, kilos.value, costoKilo)
         console.log(total.calcular())
         importe.innerText = total.calcular()
-        btnEnviar.classList.remove("ocultar")
-        
-    }  else { 
-        swal("faltan datos");
-        console.log("⛔️ No se completaron todos los valores solicitados.")
+
+
+    } else {
+        swal("Para Continuar completa todos los valores solicitados.")
     }
 }
 
@@ -41,17 +42,20 @@ botonCalcular.addEventListener("click", realizarCotizacion)
 
 realizarCotizacion()
 
+
+
+
 Toastify({
-    text: "Bienvenido a Tijuana !! Por favor completa los campos solicitados",
+    text: "Bienvenido a Tijuana !!",
     duration: 6000,
-    destination:false,
+    destination: false,
     newWindow: true,
     close: true,
-    gravity: "top", 
-    position: "center", 
-    stopOnFocus: true, 
+    gravity: "top",
+    position: "center",
+    stopOnFocus: true,
     style: {
-      background: "linear-gradient(to right, #00b09b, #96c93d)",
+        background: "linear-gradient(to right, #00b09b, #96c93d)",
     },
-    onClick: function(){} 
-  }).showToast();
+    onClick: function () { }
+}).showToast();
